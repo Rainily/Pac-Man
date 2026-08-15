@@ -38,6 +38,11 @@ public class PacManController : MonoBehaviour
         else if (Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S)) queuedDirection = Vector2.down;
         else if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A)) queuedDirection = Vector2.left;
         else if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D)) queuedDirection = Vector2.right;
+        else if (Input.GetKey(KeyCode.Space))
+        {
+            GameManager.Instance.ReloadScene();
+            Time.timeScale = 1f;
+        }
     }
 
     // Only allow turning when close to being aligned with the grid,
