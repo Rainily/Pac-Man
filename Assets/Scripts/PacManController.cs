@@ -109,7 +109,7 @@ public class PacManController : MonoBehaviour
         }
         else if (other.CompareTag("Ghost"))
         {
-            GhostController ghost = other.GetComponent<GhostController>();
+            IGhost ghost = other.GetComponent<IGhost>();
             if (GameManager.Instance.PowerModeActive)
             {
                 ghost.GetEaten();

@@ -7,7 +7,7 @@ using UnityEngine;
 /// (kinematic) + CircleCollider2D (isTrigger).
 /// </summary>
 [RequireComponent(typeof(Rigidbody2D))]
-public class GhostController : MonoBehaviour
+public class GhostController : MonoBehaviour, IGhost
 {
     public float moveSpeed = 4f;
     public LayerMask wallLayer;

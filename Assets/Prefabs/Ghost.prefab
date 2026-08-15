@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1981848855232038417}
   - component: {fileID: 5169956231394731215}
   - component: {fileID: 1733074305165815483}
-  - component: {fileID: 5025884525705166077}
+  - component: {fileID: 4899039687833108970}
   m_Layer: 0
   m_Name: Ghost
   m_TagString: Ghost
@@ -158,7 +158,7 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
   m_Radius: 0.5
---- !u!114 &5025884525705166077
+--- !u!114 &4899039687833108970
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -167,9 +167,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 8432756253430237022}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5a95efa215b0ed6458876f8fbf278cca, type: 3}
+  m_Script: {fileID: 11500000, guid: 78b566988d6207a478cbe4a2e9900f84, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::GhostController
+  m_EditorClassIdentifier: Assembly-CSharp::GhostControllerNN
+  modelAsset: {fileID: 5022602860645237092, guid: 7bfe6c13e9812c543a1f09b43c618484, type: 3}
+  backend: 512
   moveSpeed: 4
   wallLayer:
     serializedVersion: 2
