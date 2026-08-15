@@ -24,7 +24,7 @@ public class GameManager : MonoBehaviour
 
     private MazeGenerator mazeGenerator;
     private GameObject player;
-    private GameObject ghost;
+    private GameObject[] ghosts;
 
     private int score = 0;
     private int lives;
@@ -45,7 +45,7 @@ public class GameManager : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
         if (player != null) PlayerTransform = player.transform;
 
-        ghost = GameObject.FindGameObjectWithTag("Ghost");
+        ghosts = GameObject.FindGameObjectsWithTag("Ghost");
 
         pelletsRemaining = GameObject.FindGameObjectsWithTag("Pellet").Length +
                             GameObject.FindGameObjectsWithTag("PowerPellet").Length;
@@ -98,9 +98,11 @@ public class GameManager : MonoBehaviour
             // reposition player/ghosts instead of reloading.
             if (messageText != null) messageText.text = "Caught! Lives left: " + lives;
 
-            // Reset player and ghost position
+            // Reset player and ghosts position
             player.transform.position = mazeGenerator.PlayerStart;
-            ghost.transform.position = mazeGenerator.GhostStarts[0];
+
+            foreach(GameObject ghost in ghosts)
+                ghost.transform.position = mazeGenerator.GhostStarts[0];
 
         }
     }
