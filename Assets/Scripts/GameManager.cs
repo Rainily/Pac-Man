@@ -22,6 +22,10 @@ public class GameManager : MonoBehaviour
     public bool PowerModeActive { get; private set; }
     public Transform PlayerTransform { get; private set; }
 
+    private MazeGenerator mazeGenerator;
+    private GameObject player;
+    private GameObject ghost;
+
     private int score = 0;
     private int lives;
     private int pelletsRemaining;
@@ -41,9 +45,11 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+        mazeGenerator = GameObject.FindAnyObjectByType<MazeGenerator>();
         lives = startingLives;
-        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        player = GameObject.FindGameObjectWithTag("Player");
         if (player != null) PlayerTransform = player.transform;
+        ghost = GameObject.FindGameObjectWithTag("Ghost");
 
         pelletsRemaining = GameObject.FindGameObjectsWithTag("Pellet").Length +
                             GameObject.FindGameObjectsWithTag("PowerPellet").Length;
@@ -92,10 +98,11 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            // Simple reset: reload the scene. For a fuller game,
-            // reposition player/ghosts instead of reloading.
             if (messageText != null) messageText.text = "Caught! Lives left: " + lives;
-            Invoke(nameof(ReloadScene), 1.2f);
+
+            // Reset player and ghost position
+            player.transform.position = mazeGenerator.PlayerStart;
+            ghost.transform.position = mazeGenerator.GhostStarts[0];
         }
     }
 
