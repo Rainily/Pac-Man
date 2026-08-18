@@ -14,6 +14,9 @@ namespace PacManGame.Tests.EditMode
     {
         // ==================== EncodeState ====================
 
+        // EncodeState_ProducesExpectedVectorLength() explanation:
+        // The EncodeState function of the GhostControllerNN converts input into the proper format expected by the neural network. This test simply verifies that the outputted result is the proper length of 11.
+        
         [Test]
         public void EncodeState_ProducesExpectedVectorLength()
         {
@@ -22,6 +25,9 @@ namespace PacManGame.Tests.EditMode
 
             Assert.AreEqual(11, result.Length);
         }
+
+        // EncodeState_CorrectlyEncodesWallMaskAndPlayerOffset() explanation:
+        // The EncodeState function of the GhostControllerNN converts input into the proper format expected by the neural network. This test verifies if the resulting array of floats matches the expected output based on the given initial input parameters
 
         [Test]
         public void EncodeState_CorrectlyEncodesWallMaskAndPlayerOffset()
@@ -43,6 +49,9 @@ namespace PacManGame.Tests.EditMode
                 "direction one-hot should mark index 2 (left) and nothing else");
         }
 
+        // EncodeState_PowerFlagIsZero_WhenPowerModeIsFalse() explanation:
+        // The EncodeState function of the GhostControllerNN converts input into the proper format expected by the neural network. This test verifies that the provided powerMode part is successfully encoded to a 0f when passed as false.
+
         [Test]
         public void EncodeState_PowerFlagIsZero_WhenPowerModeIsFalse()
         {
@@ -51,6 +60,9 @@ namespace PacManGame.Tests.EditMode
 
             Assert.AreEqual(0f, result[6]);
         }
+
+        // EncodeState_NoDirection_LeavesOneHotAllZero() explanation:
+        // The EncodeState function of the GhostControllerNN converts input into the proper format expected by the neural network. This test verifies that when no direction is given (2nd and 3rd parameter of EncodeState() is 0f), then the last four floats in the result array should be 0f.
 
         [Test]
         public void EncodeState_NoDirection_LeavesOneHotAllZero()
@@ -65,6 +77,9 @@ namespace PacManGame.Tests.EditMode
 
         // ---- Invalid input handling ----
 
+        // EncodeState_ThrowsOnWrongLengthCanMoveArray() explanation:
+        // The EncodeState function of the GhostControllerNN converts input into the proper format expected by the neural network. This test verifies that the first paramater, an array of booleans, is of the the proper length.
+
         [Test]
         public void EncodeState_ThrowsOnWrongLengthCanMoveArray()
         {
@@ -73,12 +88,18 @@ namespace PacManGame.Tests.EditMode
                 GhostControllerNN.EncodeState(tooShort, 0f, 0f, false, -1));
         }
 
+        // EncodeState_ThrowsOnNullCanMoveArray() explanation:
+        // The EncodeState function of the GhostControllerNN converts input into the proper format expected by the neural network. This test verifies that an exception is thrown when a null array is provided as the first parameter.
+
         [Test]
         public void EncodeState_ThrowsOnNullCanMoveArray()
         {
             Assert.Throws<System.ArgumentException>(() =>
                 GhostControllerNN.EncodeState(null, 0f, 0f, false, -1));
         }
+
+        // EncodeState_IgnoresOutOfRangeDirectionIndex() explanation:
+        // The EncodeState function of the GhostControllerNN converts input into the proper format expected by the neural network. This test verifies that an exception is not thrown when a direction index is out of range
 
         [Test]
         public void EncodeState_IgnoresOutOfRangeDirectionIndex()
@@ -97,6 +118,9 @@ namespace PacManGame.Tests.EditMode
 
         // ==================== SelectDirection ====================
 
+        // SelectDirection_PicksHighestScoringValidMove() explanation:
+        // The SelectDirection function of the GhostControllerNN outputs the highest-scoring direction given specific parameters. This test verifies that the resulting direction is the expected one given the initial parameters.
+
         [Test]
         public void SelectDirection_PicksHighestScoringValidMove()
         {
@@ -107,6 +131,9 @@ namespace PacManGame.Tests.EditMode
 
             Assert.AreEqual(1, chosen, "should choose 'down', the highest-scoring valid move");
         }
+
+        // SelectDirection_ExcludesWalledOffDirections() explanation:
+        // The SelectDirection function of the GhostControllerNN outputs the highest-scoring direction given specific parameters. This test verifies that the resulting direction is the expected one given the initial parameters when the actual best direction is blocked by a wall
 
         [Test]
         public void SelectDirection_ExcludesWalledOffDirections()
@@ -119,6 +146,9 @@ namespace PacManGame.Tests.EditMode
             Assert.AreNotEqual(0, chosen, "should never choose a direction blocked by a wall");
             Assert.AreEqual(3, chosen, "should fall through to the next-highest valid score ('right')");
         }
+
+        // SelectDirection_AvoidsReversingUnlessDeadEnd() explanation:
+        // The SelectDirection function of the GhostControllerNN outputs the highest-scoring direction given specific parameters. This test verifies that the next chosen direction is not the opposite of the current direction unless it's a dead end.
 
         [Test]
         public void SelectDirection_AvoidsReversingUnlessDeadEnd()
@@ -134,6 +164,9 @@ namespace PacManGame.Tests.EditMode
             Assert.AreEqual(0, chosen, "should pick 'up', the highest-scoring non-reversing move");
         }
 
+        // SelectDirection_ForcesReverseAtDeadEnd() explanation:
+        // The SelectDirection function of the GhostControllerNN outputs the highest-scoring direction given specific parameters. This test verifies that the next chosen direction is reverse if it is the only valid move (dead end).
+
         [Test]
         public void SelectDirection_ForcesReverseAtDeadEnd()
         {
@@ -145,6 +178,9 @@ namespace PacManGame.Tests.EditMode
             Assert.AreEqual(1, chosen,
                 "at a dead end the ghost must reverse even though that direction is excluded by default");
         }
+
+        // SelectDirection_IgnoresNaNAndInfiniteLogits() explanation:
+        // The SelectDirection function of the GhostControllerNN outputs the highest-scoring direction given specific parameters. This test verifies that infinity and NaN entries from the AI model are ignored.
 
         [Test]
         public void SelectDirection_IgnoresNaNAndInfiniteLogits()
@@ -160,6 +196,9 @@ namespace PacManGame.Tests.EditMode
 
         // ---- Invalid input handling ----
 
+        // SelectDirection_ReturnsMinusOne_OnWrongLengthLogitsArray() explanation:
+        // The SelectDirection function of the GhostControllerNN outputs the highest-scoring direction given specific parameters. This test verifies that if the logits (array of floats) provided is incomplete, it should output -1 (no decision instead of throwing an exception).
+
         [Test]
         public void SelectDirection_ReturnsMinusOne_OnWrongLengthLogitsArray()
         {
@@ -172,6 +211,9 @@ namespace PacManGame.Tests.EditMode
                 "malformed model output should signal 'no decision' rather than throw or index out of range");
         }
 
+        // SelectDirection_ReturnsMinusOne_OnNullLogits() explanation:
+        // The SelectDirection function of the GhostControllerNN outputs the highest-scoring direction given specific parameters. This test verifies that if the logits (array of floats) provided is null, it should output -1 (no decision instead of throwing an exception).
+
         [Test]
         public void SelectDirection_ReturnsMinusOne_OnNullLogits()
         {
@@ -179,6 +221,9 @@ namespace PacManGame.Tests.EditMode
             int chosen = GhostControllerNN.SelectDirection(null, validMoves, oppositeIndex: -1);
             Assert.AreEqual(-1, chosen);
         }
+
+        // SelectDirection_ReturnsMinusOne_OnWrongLengthValidMovesArray() explanation:
+        // The SelectDirection function of the GhostControllerNN outputs the highest-scoring direction given specific parameters. This test verifies that if the validMoves (array of booleans) provided is incomplete, it should output -1 (no decision instead of throwing an exception).
 
         [Test]
         public void SelectDirection_ReturnsMinusOne_OnWrongLengthValidMovesArray()
@@ -191,6 +236,9 @@ namespace PacManGame.Tests.EditMode
             Assert.AreEqual(-1, chosen);
         }
 
+        // SelectDirection_ReturnsMinusOne_WhenNoValidMovesExist() explanation:
+        // The SelectDirection function of the GhostControllerNN outputs the highest-scoring direction given specific parameters. This test verifies that if the validMoves (array of booleans) provided has no possible moves (all false), it should output -1 (no decision instead of throwing an exception).
+
         [Test]
         public void SelectDirection_ReturnsMinusOne_WhenNoValidMovesExist()
         {
@@ -202,6 +250,10 @@ namespace PacManGame.Tests.EditMode
             Assert.AreEqual(-1, chosen,
                 "with no walkable neighbor at all, the caller (not this pure function) decides the recovery behavior");
         }
+
+        // SelectDirection_DoesNotThrow_OnOutOfRangeOppositeIndex() explanation:
+        // The SelectDirection function of the GhostControllerNN outputs the highest-scoring direction given specific parameters. This test verifies that if the provided oppositeIndex parameter is out of range, do not throw an exception.
+
 
         [Test]
         public void SelectDirection_DoesNotThrow_OnOutOfRangeOppositeIndex()

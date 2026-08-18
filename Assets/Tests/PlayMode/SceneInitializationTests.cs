@@ -33,6 +33,9 @@ namespace PacManGame.Tests.PlayMode
             yield return null;
         }
 
+        // GameManager_Singleton_IsAssigned_AfterAwake() explanation:
+        // This test verifies that, after the scene starts, the GameManager instance should be set.
+
         [UnityTest]
         public IEnumerator GameManager_Singleton_IsAssigned_AfterAwake()
         {
@@ -44,6 +47,9 @@ namespace PacManGame.Tests.PlayMode
             Assert.IsNotNull(GameManager.Instance,
                 "GameManager.Instance should be set once the scene has initialized.");
         }
+
+        // Maze_SpawnsPlayerAndGhosts_OnInitialization() explanation:
+        // This test verifies that, after building and setting up the initial prefabs, the player, ghost and pellets are properly spawned in.
 
         [UnityTest]
         public IEnumerator Maze_SpawnsPlayerAndGhosts_OnInitialization()
@@ -68,6 +74,9 @@ namespace PacManGame.Tests.PlayMode
                 "Scene initialization should populate pellets from the maze layout.");
         }
 
+        // GameManager_FindsPlayerTransform_AfterMazeSpawns() explanation:
+        // This test verifies that, after building and setting up the initial prefabs, the player's transform component can be found.
+
         [UnityTest]
         public IEnumerator GameManager_FindsPlayerTransform_AfterMazeSpawns()
         {
@@ -91,6 +100,9 @@ namespace PacManGame.Tests.PlayMode
             Assert.IsNotNull(GameManager.Instance.PlayerTransform,
                 "GameManager should locate the spawned Player by tag during initialization.");
         }
+
+        // GameManager_CountsAllPelletsOnLevel_AtStart() explanation:
+        // This test verifies that, after building and setting up the initial prefabs, the number of pellets is greater than 0 (assuming the provided layout has 1 or more pellets).
 
         [UnityTest]
         public IEnumerator GameManager_CountsAllPelletsOnLevel_AtStart()

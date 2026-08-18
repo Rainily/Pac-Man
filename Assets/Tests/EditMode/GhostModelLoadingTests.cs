@@ -45,6 +45,9 @@ namespace PacManGame.Tests.EditMode
 
         // ---- Model loads successfully --------------------------------------
 
+        // ModelLoads_Successfully_WhenAssetIsValid() explanation:
+        // This test verifies that, assuming the model is not null, the provided model successfully loads.
+
         [Test]
         public void ModelLoads_Successfully_WhenAssetIsValid()
         {
@@ -58,6 +61,9 @@ namespace PacManGame.Tests.EditMode
             Assert.IsTrue(controller.IsModelLoaded,
                 "Expected IsModelLoaded to be true after loading a valid model asset.");
         }
+
+        // InitializeModel_CanBeCalledMultipleTimes_WithoutLeakingOrThrowing() explanation:
+        // This test verifies that, assuming the provided model is not null, initializing the model multiple times does not cause any issues such as throwing an exception.
 
         [Test]
         public void InitializeModel_CanBeCalledMultipleTimes_WithoutLeakingOrThrowing()
@@ -80,6 +86,9 @@ namespace PacManGame.Tests.EditMode
 
         // ---- Worker is created ----------------------------------------------
 
+        // Worker_Is_Created_WhenModelLoadsSuccessfully() explanation:
+        // This test verifies that, assuming the provided model is not null, a worker is successfully created for the ghost controller.
+
         [Test]
         public void Worker_Is_Created_WhenModelLoadsSuccessfully()
         {
@@ -92,6 +101,9 @@ namespace PacManGame.Tests.EditMode
             Assert.IsTrue(controller.HasWorker,
                 "Expected a Worker to be created once the model loads successfully.");
         }
+
+        // Worker_Is_Disposed_OnComponentDestroy() explanation:
+        // This test verifies that, assuming the provided model is not null, when a ghost controller is disposed, not exception is thrown and the associated worker is also cleanly released.
 
         [Test]
         public void Worker_Is_Disposed_OnComponentDestroy()
@@ -110,6 +122,9 @@ namespace PacManGame.Tests.EditMode
 
         // ---- Exception handling ----------------------------------------------
 
+        // InitializeModel_HandlesMissingAsset_WithoutThrowing() explanation:
+        // This test verifies that, in a case of a corrupted/missing model asset, the game should not throw an exception (it should have fallback behavior).
+
         [Test]
         public void InitializeModel_HandlesMissingAsset_WithoutThrowing()
         {
@@ -122,6 +137,9 @@ namespace PacManGame.Tests.EditMode
             Assert.IsFalse(controller.HasWorker);
         }
 
+        // InitializeModel_LogsWarning_WhenAssetIsMissing() explanation:
+        // This test verifies that, in a case of a corrupted/missing model asset, the game outputs a warning log stating that there was an issue and fallback behavior has taken place.
+
         [Test]
         public void InitializeModel_LogsWarning_WhenAssetIsMissing()
         {
@@ -133,6 +151,9 @@ namespace PacManGame.Tests.EditMode
             controller.InitializeModel();
         }
 
+        // InitializeModel_LogsWarning_WhenAssetIsMissing() explanation:
+        // This test verifies that, in a case of a corrupted/missing model asset and that IntializeModel() was still called, when the ghost controller calls Dispose(), it should not throw an exception.
+
         [Test]
         public void Dispose_IsSafeToCall_WhenNoWorkerWasEverCreated()
         {
@@ -140,6 +161,9 @@ namespace PacManGame.Tests.EditMode
             // valid asset -- Dispose() must still be a no-op, not a crash.
             Assert.DoesNotThrow(() => controller.Dispose());
         }
+
+        // Dispose_IsSafeToCall_Repeatedly() explanation:
+        // This test verifies that the ghost controller can call Dispose() multiple times without throwing an exception.
 
         [Test]
         public void Dispose_IsSafeToCall_Repeatedly()

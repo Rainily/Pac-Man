@@ -588,7 +588,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: New Text
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -701,7 +701,8 @@ MonoBehaviour:
   pelletPrefab: {fileID: 8393327647391781770, guid: 766d1762870fb1443bf0a218f3e60796, type: 3}
   powerPelletPrefab: {fileID: 2153039278289410459, guid: b484797be33c1874eb3c561b60850141, type: 3}
   playerPrefab: {fileID: 4801187518536142043, guid: ae2c9db351b6f3b4a97f2f08063009db, type: 3}
-  ghostPrefab: {fileID: 8432756253430237022, guid: 28b3f571aad1b5d46aa9fc668ba71cb0, type: 3}
+  ghostPrefabDefault: {fileID: 8432756253430237022, guid: 33f92e6b1b4557542a8ace5eb33e9113, type: 3}
+  ghostPrefabSentis: {fileID: 8432756253430237022, guid: 28b3f571aad1b5d46aa9fc668ba71cb0, type: 3}
   cellSize: 1
 --- !u!4 &1345702933
 Transform:
@@ -854,7 +855,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: New Text
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -991,7 +992,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: New Text
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
