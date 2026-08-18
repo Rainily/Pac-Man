@@ -1,0 +1,23 @@
+{
+    "name": "PacManGame.PlayModeTests",
+    "rootNamespace": "PacManGame.Tests.PlayMode",
+    "references": [
+        "PacManGame",
+        "UnityEngine.TestRunner",
+        "UnityEditor.TestRunner",
+        "Unity.InferenceEngine"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": true,
+    "precompiledReferences": [
+        "nunit.framework.dll"
+    ],
+    "autoReferenced": true,
+    "defineConstraints": [
+        "UNITY_INCLUDE_TESTS"
+    ],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

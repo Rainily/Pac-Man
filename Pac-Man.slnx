@@ -1,3 +1,5 @@
 ﻿<Solution>
-  <Project Path="Assembly-CSharp.csproj" />
+  <Project Path="PacManGame.PlayModeTests.csproj" />
+  <Project Path="PacManGame.EditModeTests.csproj" />
+  <Project Path="PacManGame.csproj" />
 </Solution>

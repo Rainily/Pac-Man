@@ -14,8 +14,8 @@ public class MazeGenerator : MonoBehaviour
     public GameObject pelletPrefab;
     public GameObject powerPelletPrefab;
     public GameObject playerPrefab;
-    public GameObject ghostPrefabDefault;
-    public GameObject ghostPrefabSentis;
+    public GameObject ghostPrefab/*Default*/;
+    //public GameObject ghostPrefabSentis;
 
     [Header("Layout")]
     public float cellSize = 1f;
@@ -100,12 +100,23 @@ public class MazeGenerator : MonoBehaviour
         if (playerPrefab != null)
             Instantiate(playerPrefab, PlayerStart, Quaternion.identity);
 
+        /*
         if (ghostPrefabSentis != null && ghostPrefabDefault != null)
         {
             foreach (var gpos in GhostStarts)
             {
                 Instantiate(ghostPrefabSentis, gpos, Quaternion.identity);
                 Instantiate(ghostPrefabDefault, gpos, Quaternion.identity);
+            }
+        }
+        */
+
+        if (ghostPrefab != null )
+        {
+            foreach (var gpos in GhostStarts)
+            {
+                Instantiate(ghostPrefab, gpos, Quaternion.identity);
+
             }
         }
     }
