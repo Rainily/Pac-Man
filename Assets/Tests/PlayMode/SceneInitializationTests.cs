@@ -53,7 +53,7 @@ namespace PacManGame.Tests.PlayMode
             var mazeObj = Track(new GameObject("MazeGenerator"));
             var maze = mazeObj.AddComponent<MazeGenerator>();
             maze.playerPrefab = stand.player;
-            maze.ghostPrefab = stand.ghost;
+            maze.ghostPrefabSentis = stand.ghost;
             maze.wallPrefab = stand.wall;
             maze.pelletPrefab = stand.pellet;
             maze.powerPelletPrefab = stand.powerPellet;
@@ -76,7 +76,7 @@ namespace PacManGame.Tests.PlayMode
             var mazeObj = Track(new GameObject("MazeGenerator"));
             var maze = mazeObj.AddComponent<MazeGenerator>();
             maze.playerPrefab = stand.player;
-            maze.ghostPrefab = stand.ghost;
+            maze.ghostPrefabSentis = stand.ghost;
             maze.wallPrefab = stand.wall;
             maze.pelletPrefab = stand.pellet;
             maze.powerPelletPrefab = stand.powerPellet;
@@ -100,7 +100,7 @@ namespace PacManGame.Tests.PlayMode
             var mazeObj = Track(new GameObject("MazeGenerator"));
             var maze = mazeObj.AddComponent<MazeGenerator>();
             maze.playerPrefab = stand.player;
-            maze.ghostPrefab = stand.ghost;
+            maze.ghostPrefabSentis = stand.ghost;
             maze.wallPrefab = stand.wall;
             maze.pelletPrefab = stand.pellet;
             maze.powerPelletPrefab = stand.powerPellet;
